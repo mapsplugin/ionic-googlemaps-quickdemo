@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { PolygonPage } from '../pages/polygon/polygon';
 import { BaseArrayClassPage } from '../pages/base-array-class/base-array-class';
 import { HtmlInfoWindowPage } from '../pages/html-info-window/html-info-window';
+import { MarkerClusterPage } from '../pages/marker-cluster/marker-cluster';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,6 +27,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'HtmlInfoWindow', component: HtmlInfoWindowPage },
       { title: 'BaseArrayClass', component: BaseArrayClassPage },
+      { title: 'MarkerCluster', component: MarkerClusterPage },
       { title: 'Polygon', component: PolygonPage }
     ];
 

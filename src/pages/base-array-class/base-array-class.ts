@@ -29,7 +29,7 @@ import {
 export class BaseArrayClassPage {
 
   map: GoogleMap;
-  distance: number;
+  distance: string;
 
   constructor(
     public navCtrl: NavController,
@@ -45,7 +45,7 @@ export class BaseArrayClassPage {
     setTimeout(this.loadMap.bind(this), 1000);
   }
   loadMap() {
-    let points: Array = [
+    let points: Array<ILatLng> = [
       {lat: 33.91636924837674, lng: -118.39605331420898},
       {lat: 33.90205144970967, lng: -118.39639663696288},
       {lat: 33.90190897196702, lng: -118.37905883789062},
@@ -62,16 +62,16 @@ export class BaseArrayClassPage {
       });
     })
     .then((polyline: Polyline) => {
-      let baseArray: BaseArrayClass = polyline.getPoints();
+      let baseArray: BaseArrayClass<ILatLng> = polyline.getPoints();
 
-      baseArray.map((point: ILatLng, next: Function) => {
+      baseArray.map((point: ILatLng, next: any) => {
         this.map.addMarker({
           position: point,
           draggable: true
         }).then(next);
-      }, (markers: []) => {
+      }, (markers) => {
         markers.forEach((marker: Marker, idx: number) => {
-          marker.on('position_changed').subscribe((params: []) => {
+          marker.on('position_changed').subscribe((params) => {
             baseArray.setAt(idx, params[1]);
           });
         });
@@ -79,7 +79,7 @@ export class BaseArrayClassPage {
         // trigger the position_changed event for the first calculation.
         markers[0].trigger('position_changed', null, markers[0].getPosition());
       });
-      baseArray.on('set_at', () => {
+      baseArray.on('set_at').subscribe(() => {
         this._ngZone.run(() => {
           let distanceMeter: number = this.spherical.computeLength(baseArray);
           this.distance = (distanceMeter * 0.000621371192).toFixed(2) + " miles";

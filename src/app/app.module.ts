@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { BaseArrayClassPage } from '../pages/base-array-class/base-array-class';
 import { PolygonPage } from '../pages/polygon/polygon';
 import { HtmlInfoWindowPage } from '../pages/html-info-window/html-info-window';
+import { MarkerClusterPage } from '../pages/marker-cluster/marker-cluster';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +19,8 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     HomePage,
     PolygonPage,
     BaseArrayClassPage,
-    HtmlInfoWindowPage
+    HtmlInfoWindowPage,
+    MarkerClusterPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     HomePage,
     BaseArrayClassPage,
     PolygonPage,
-    HtmlInfoWindowPage
+    HtmlInfoWindowPage,
+    MarkerClusterPage
   ],
   providers: [
     StatusBar,

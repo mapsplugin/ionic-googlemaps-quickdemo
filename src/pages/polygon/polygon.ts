@@ -27,7 +27,7 @@ export class PolygonPage {
 
   map: GoogleMap;
 
-  GORYOKAKU_POINTS: Array = [
+  GORYOKAKU_POINTS: Array<ILatLng> = [
     {lat: 41.79883, lng: 140.75675},
     {lat: 41.799240000000005, lng: 140.75875000000002},
     {lat: 41.797650000000004, lng: 140.75905},
@@ -67,20 +67,20 @@ export class PolygonPage {
           'points': this.GORYOKAKU_POINTS,
           'strokeColor' : '#AA00FF',
           'fillColor' : '#00FFAA',
-          'width': 10
+          'strokeWidth': 10
         });
       })
       .then((polygon: Polygon) => {
         let points: BaseArrayClass<ILatLng> = polygon.getPoints();
 
-        points.map((latLng: ILatLng, next: Function) => {
+        points.map((latLng: ILatLng, next: any) => {
           this.map.addMarker({
             draggable: true,
             position: latLng
           }).then(next);
-        }, (markers: []) => {
+        }, (markers) => {
           markers.forEach((marker: Marker, idx: number) => {
-            marker.on(GoogleMapsEvent.MARKER_DRAG).subscribe((params: []) => {
+            marker.on(GoogleMapsEvent.MARKER_DRAG).subscribe((params) => {
               let position: LatLng = params[0];
               points.setAt(idx, position);
             });

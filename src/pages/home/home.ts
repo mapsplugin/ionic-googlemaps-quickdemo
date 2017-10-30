@@ -8,7 +8,6 @@ import {
   GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
-  GoogleMapsAnimation,
   Marker,
   GoogleMapsAnimation,
   MyLocation
@@ -50,39 +49,15 @@ export class HomePage {
     // Wait the maps plugin is ready until the MAP_READY event
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       this.mapReady = true;
-      this.createMarkers();
     });
   }
 
-
-
-createMarkers() {
-  var bounds = this.map.getVisibleRegion();
-  var sw = bounds.southwest, ne = bounds.northeast;
-  var diffY = (ne.lat - sw.lat), diffX = (ne.lng - sw.lng);
-  for (var i = 0; i < 50; i++) {
-    this.map.addMarker({
-      'position': {
-        'lat': sw.lat + diffY * Math.random(),
-        'lng': sw.lng  + diffX * Math.random()
-      }
-    }).then((marker:Marker) => {
-      this.map.on('animate').subscribe((params: []) => {
-        let animation: string = params[0];
-        marker.setAnimation(animation);
-      });
-    });
-  }
-}
-onButtonClick() {
-  let btnTxt: string = event.srcElement.innerText;
-  this.map.trigger("animate", btnTxt);
-/*
-    return;
+  onButtonClick() {
     if (!this.mapReady) {
       this.showToast('map is not ready yet. Please try again.');
       return;
     }
+    this.map.clear();
 
     // Get the location of you
     this.map.getMyLocation()
@@ -112,7 +87,6 @@ onButtonClick() {
           this.showToast('clicked!');
         });
       });
-*/
   }
 
   showToast(message: string) {
