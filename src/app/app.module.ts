@@ -4,7 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { BaseArrayClassPage } from '../pages/base-array-class/base-array-class';
+import { PolygonPage } from '../pages/polygon/polygon';
+import { HtmlInfoWindowPage } from '../pages/html-info-window/html-info-window';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,7 +16,9 @@ import { GoogleMaps } from "@ionic-native/google-maps";
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    PolygonPage,
+    BaseArrayClassPage,
+    HtmlInfoWindowPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,9 @@ import { GoogleMaps } from "@ionic-native/google-maps";
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    BaseArrayClassPage,
+    PolygonPage,
+    HtmlInfoWindowPage
   ],
   providers: [
     StatusBar,

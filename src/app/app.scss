@@ -14,3 +14,15 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+#map_canvas {
+  height: 100%;
+}
+
+.smallPanel {
+  margin: 10px;
+  padding: 10px;
+  background-color:rgba(255,255,255,0.5);
+  z-index: 2 !important;
+  font-size: 25px;
+}
