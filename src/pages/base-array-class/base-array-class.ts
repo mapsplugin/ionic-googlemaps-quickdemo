@@ -64,13 +64,15 @@ export class BaseArrayClassPage {
     .then((polyline: Polyline) => {
       let baseArray: BaseArrayClass<ILatLng> = polyline.getPoints();
 
-      baseArray.map((point: ILatLng, next: any) => {
+      baseArray.mapAsync((point: ILatLng, next: (newElement: any) => void) => {
         this.map.addMarker({
           position: point,
           draggable: true
         }).then(next);
-      }, (markers) => {
-        markers.forEach((marker: Marker, idx: number) => {
+      }).then((markers: Marker[]) => {
+
+        let baseArray2: BaseArrayClass<Marker> = new BaseArrayClass<Marker>(markers);
+        baseArray2.forEach((marker: Marker, idx: number) => {
           marker.on('position_changed').subscribe((params) => {
             baseArray.setAt(idx, params[1]);
           });
@@ -79,6 +81,7 @@ export class BaseArrayClassPage {
         // trigger the position_changed event for the first calculation.
         markers[0].trigger('position_changed', null, markers[0].getPosition());
       });
+
       baseArray.on('set_at').subscribe(() => {
         this._ngZone.run(() => {
           let distanceMeter: number = this.spherical.computeLength(baseArray);

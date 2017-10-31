@@ -73,12 +73,12 @@ export class PolygonPage {
       .then((polygon: Polygon) => {
         let points: BaseArrayClass<ILatLng> = polygon.getPoints();
 
-        points.map((latLng: ILatLng, next: any) => {
+        points.mapAsync((latLng: ILatLng, next: any) => {
           this.map.addMarker({
             draggable: true,
             position: latLng
           }).then(next);
-        }, (markers) => {
+        }).then((markers: Marker[]) => {
           markers.forEach((marker: Marker, idx: number) => {
             marker.on(GoogleMapsEvent.MARKER_DRAG).subscribe((params) => {
               let position: LatLng = params[0];
