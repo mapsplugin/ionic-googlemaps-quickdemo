@@ -36,26 +36,33 @@ export class HtmlInfoWindowPage {
   }
 
   loadMap() {
-    this.map = this.googleMaps.create('map_canvas');
+    this.map = this.googleMaps.create('map_canvas', {
+      camera: {
+        target: {lat: 35.685208, lng: -121.168225},
+        zoom: 5
+      }
+    });
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       let htmlInfoWindow = new HtmlInfoWindow();
 
       let html: string = [
-        'This is <b>Html</b> InfoWindow',
-        '<br>',
-        '<button onclick="javascript:alert(\'clicked!\');">click here</button>',
+        '<h3>Hearst Castle</h3>',
+        '<img src="assets/imgs/hearst_castle.jpg">'
       ].join("");
-      htmlInfoWindow.setContent(html);
+      htmlInfoWindow.setContent(html, {
+        width: "280px",
+        height: "330px"
+      });
 
       this.map.addMarker({
-        position: {lat: 0, lng: 0},
-        draggable: true
+        position: {lat: 35.685208, lng: -121.168225},
+        draggable: true,
+        disableAutoPan: true
       }).then((marker: Marker) => {
 
         marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
           htmlInfoWindow.open(marker);
         });
-        marker.trigger(GoogleMapsEvent.MARKER_CLICK);
 
       });
     });
