@@ -27,7 +27,7 @@ export class PolygonPage {
 
   map: GoogleMap;
 
-  GORYOKAKU_POINTS: Array<ILatLng> = [
+  GORYOKAKU_POINTS: ILatLng[] = [
     {lat: 41.79883, lng: 140.75675},
     {lat: 41.799240000000005, lng: 140.75875000000002},
     {lat: 41.797650000000004, lng: 140.75905},
@@ -72,7 +72,7 @@ export class PolygonPage {
       .then((polygon: Polygon) => {
         let points: BaseArrayClass<ILatLng> = polygon.getPoints();
 
-        points.mapAsync((latLng: ILatLng, next: (marker: Marker)) => {
+        points.mapAsync((latLng: ILatLng, next: (marker: Marker) => void) => {
           this.map.addMarker({
             draggable: true,
             position: latLng
