@@ -47,7 +47,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.rootPage = TileOverlayPage;
+      this.rootPage = HomePage;
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
