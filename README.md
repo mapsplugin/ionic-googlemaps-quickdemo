@@ -1,26 +1,12 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# GoogleMaps quick demo
 
-## How to use this template
+This is a demo app of [@ionic-native/google-maps](https://www.npmjs.com/package/@ionic-native/google-maps) plugin and [Cordova GoogleMaps](https://github.com/mapsplugin/cordova-plugin-googlemaps) plugin.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+![](./capture.png)
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+## Demo apk (Android)
+[ionic-googlemaps-quickdemo.apk](./ionic-googlemaps-quickdemo.apk)
 
-### With the Ionic CLI:
+## Replace with your api key
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
-```
-
-Then, to run it, cd into `mySideMenu` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+You need to replace `(REPLACE WITH YOUR APK KEY)` in config.xml and package.json files with your Google Maps API keys.

@@ -1,8 +1,8 @@
 {
-  "name": "ionic-googlemaps",
+  "name": "GoogleMaps quick demo",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Masashi Katsumata",
+  "homepage": "https://github.com/mapsplugin",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -26,7 +26,6 @@
     "@ionic-native/status-bar": "4.3.2",
     "@ionic/storage": "2.0.1",
     "cordova-android": "6.3.0",
-    "cordova-ios": "^4.5.3",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps",
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
@@ -44,7 +43,7 @@
     "@ionic/app-scripts": "3.0.1",
     "typescript": "2.3.4"
   },
-  "description": "An Ionic project",
+  "description": "A demo app of @ionic-native/google-maps plugin.",
   "cordova": {
     "plugins": {
       "ionic-plugin-keyboard": {},
@@ -53,16 +52,14 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_BROWSER": "AIzaSyDoGU-q2R8gI3C2YdOheaCLTKl8rHshV9A",
-        "API_KEY_FOR_ANDROID": "AIzaSyDoGU-q2R8gI3C2YdOheaCLTKl8rHshV9A",
-        "API_KEY_FOR_IOS": "AIzaSyDoGU-q2R8gI3C2YdOheaCLTKl8rHshV9A",
+        "API_KEY_FOR_ANDROID": "(REPLACE WITH YOUR APK KEY)",
+        "API_KEY_FOR_IOS": "(REPLACE WITH YOUR APK KEY)",
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "Show your location on the map",
         "LOCATION_ALWAYS_USAGE_DESCRIPTION": "Trace your location on the map"
       }
     },
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   }
 }
