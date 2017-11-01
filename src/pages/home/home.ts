@@ -32,7 +32,8 @@ export class HomePage {
   }
 
   loadMap() {
-    // Create a map after the view is ready and the native platform is ready.
+    // Create a map after the view is loaded.
+    // (platform is already ready in app.component.ts)
     this.map = this.googleMaps.create('map_canvas', {
       camera: {
         target: {
