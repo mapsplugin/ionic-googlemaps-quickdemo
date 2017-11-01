@@ -2,7 +2,7 @@
 
 This is a demo app of [@ionic-native/google-maps](https://www.npmjs.com/package/@ionic-native/google-maps) plugin and [Cordova GoogleMaps](https://github.com/mapsplugin/cordova-plugin-googlemaps) plugin.
 
-![](./capture.png)
+<img src="./capture.png" width="250">
 
 ## Demo apk (Android)
 [ionic-googlemaps-quickdemo.apk](./ionic-googlemaps-quickdemo.apk)
