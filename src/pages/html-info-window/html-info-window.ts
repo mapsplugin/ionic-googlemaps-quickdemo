@@ -32,7 +32,7 @@ export class HtmlInfoWindowPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HtmlInfoWindowPage');
-    setTimeout(this.loadMap.bind(this), 1000);
+    this.loadMap();
   }
 
   loadMap() {
@@ -45,11 +45,15 @@ export class HtmlInfoWindowPage {
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       let htmlInfoWindow = new HtmlInfoWindow();
 
-      let html: string = [
+      let frame: HTMLElement = document.createElement('div');
+      frame.innerHTML = [
         '<h3>Hearst Castle</h3>',
         '<img src="assets/imgs/hearst_castle.jpg">'
       ].join("");
-      htmlInfoWindow.setContent(html, {
+      frame.getElementsByTagName("img")[0].addEventListener("click", () => {
+        htmlInfoWindow.setBackgroundColor('red');
+      });
+      htmlInfoWindow.setContent(frame, {
         width: "280px",
         height: "330px"
       });

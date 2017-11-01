@@ -41,8 +41,7 @@ export class BaseArrayClassPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PolygonPage');
-
-    setTimeout(this.loadMap.bind(this), 1000);
+    this.loadMap();
   }
   loadMap() {
     let points: Array<ILatLng> = [

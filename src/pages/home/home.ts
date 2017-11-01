@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   NavController,
-  Platform,
   ToastController
 } from 'ionic-angular';
 import {
@@ -24,13 +23,12 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public platform: Platform,
     public toastCtrl: ToastController,
     private googleMaps: GoogleMaps) {
   }
 
   ionViewDidLoad() {
-    setTimeout(this.loadMap.bind(this), 1000);
+    this.loadMap();
   }
 
   loadMap() {

@@ -50,8 +50,7 @@ export class PolygonPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PolygonPage');
-
-    setTimeout(this.loadMap.bind(this), 1000);
+    this.loadMap();
   }
 
   loadMap() {
@@ -73,7 +72,7 @@ export class PolygonPage {
       .then((polygon: Polygon) => {
         let points: BaseArrayClass<ILatLng> = polygon.getPoints();
 
-        points.mapAsync((latLng: ILatLng, next: any) => {
+        points.mapAsync((latLng: ILatLng, next: (marker: Marker)) => {
           this.map.addMarker({
             draggable: true,
             position: latLng

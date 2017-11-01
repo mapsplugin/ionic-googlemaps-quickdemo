@@ -8,6 +8,7 @@ import { PolygonPage } from '../pages/polygon/polygon';
 import { BaseArrayClassPage } from '../pages/base-array-class/base-array-class';
 import { HtmlInfoWindowPage } from '../pages/html-info-window/html-info-window';
 import { MarkerClusterPage } from '../pages/marker-cluster/marker-cluster';
+import { GeocodingPage } from '../pages/geocoding/geocoding';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +16,7 @@ import { MarkerClusterPage } from '../pages/marker-cluster/marker-cluster';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
@@ -28,13 +29,16 @@ export class MyApp {
       { title: 'HtmlInfoWindow', component: HtmlInfoWindowPage },
       { title: 'BaseArrayClass', component: BaseArrayClassPage },
       { title: 'MarkerCluster', component: MarkerClusterPage },
-      { title: 'Polygon', component: PolygonPage }
+      { title: 'Polygon', component: PolygonPage },
+      { title: 'Geocoding', component: GeocodingPage }
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.rootPage = HomePage;
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

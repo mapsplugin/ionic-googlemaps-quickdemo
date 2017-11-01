@@ -5,8 +5,6 @@ import {
   GoogleMap,
   GoogleMapsEvent,
   MarkerCluster,
-  LatLng,
-  GoogleMapsAnimation,
   Marker
 } from "@ionic-native/google-maps";
 
@@ -34,11 +32,10 @@ export class MarkerClusterPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MarkerClusterPage');
-    setTimeout(this.loadMap.bind(this), 1000);
+    this.loadMap();
   }
 
   loadMap() {
-    let self = this;
 
     this.map = this.googleMaps.create('map_canvas', {
       'camera': {
@@ -51,7 +48,7 @@ export class MarkerClusterPage {
     });
 
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      self.addCluster(self.dummyData());
+      this.addCluster(this.dummyData());
     });
   }
 
