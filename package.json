@@ -26,8 +26,9 @@
     "@ionic-native/status-bar": "4.3.2",
     "@ionic/storage": "2.0.1",
     "cordova-android": "6.3.0",
+    "cordova-ios": "^4.5.3",
     "cordova-plugin-device": "^1.1.4",
-    "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps",
+    "cordova-plugin-googlemaps": "^2.1.0",
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -59,7 +60,8 @@
       }
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
