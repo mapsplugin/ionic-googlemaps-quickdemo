@@ -44,7 +44,7 @@ export class GeocodingPage {
   }
 
   loadMap1() {
-    this.search_address = 'LAX airport, USA';
+    this.search_address = '1600 Amphitheatre Parkway, Mountain View, CA 94043, United States';
     this.map1 = this.googleMaps.create(document.getElementById('map_canvas1'));
 
     // Wait the MAP_READY before using any methods.
@@ -128,6 +128,10 @@ export class GeocodingPage {
       mvcArray.one('finish').then(() => {
         console.log('finish', mvcArray.getArray());
         return mvcArray.mapAsync((result: GeocoderResult[], next: (marker: Marker) => void) => {
+          if (result.length === 0) {
+            // Geocoder can not get the result
+            return next(null);
+          }
           this.map2.addMarker({
             'position': result[0].position,
             'title':  JSON.stringify(result)

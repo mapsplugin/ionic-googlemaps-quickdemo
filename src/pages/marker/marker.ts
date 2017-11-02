@@ -113,10 +113,8 @@ export class MarkerPage {
   }
 
   onMarkerClick(params: any) {
-    console.log(params);
     let marker: Marker = <Marker>params[1];
     let iconData: any = marker.get('iconData');
-      console.log(iconData);
     marker.setIcon(iconData);
   }
 

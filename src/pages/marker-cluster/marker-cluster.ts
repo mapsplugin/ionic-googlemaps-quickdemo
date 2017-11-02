@@ -53,35 +53,35 @@ export class MarkerClusterPage {
   }
 
   addCluster(data) {
-this.map.addMarkerCluster({
-  markers: data,
-  icons: [
-    {
-      min: 3,
-      max: 9,
-      url: "./assets/markercluster/small.png",
-      label: {
-        color: "white"
-      }
-    },
-    {
-      min: 10,
-      url: "./assets/markercluster/large.png",
-      label: {
-        color: "white"
-      }
-    }
-  ]
-}).then((markerCluster: MarkerCluster) => {
+    this.map.addMarkerCluster({
+      markers: data,
+      icons: [
+        {
+          min: 3,
+          max: 9,
+          url: "./assets/markercluster/small.png",
+          label: {
+            color: "white"
+          }
+        },
+        {
+          min: 10,
+          url: "./assets/markercluster/large.png",
+          label: {
+            color: "white"
+          }
+        }
+      ]
+    }).then((markerCluster: MarkerCluster) => {
 
-  markerCluster.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
-    let marker: Marker = params[1];
-    marker.setTitle(marker.get("name"));
-    marker.setSnippet(marker.get("address"));
-    marker.showInfoWindow();
-  });
+      markerCluster.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
+        let marker: Marker = params[1];
+        marker.setTitle(marker.get("name"));
+        marker.setSnippet(marker.get("address"));
+        marker.showInfoWindow();
+      });
 
-});
+    });
   }
 
   dummyData() {
