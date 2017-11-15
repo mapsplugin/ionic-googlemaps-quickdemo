@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -42,10 +42,7 @@ export class PolygonPage {
     {lat: 41.79909000000001, lng: 140.75465}
   ];
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private googleMaps: GoogleMaps) {
+  constructor() {
   }
 
   ionViewDidLoad() {
@@ -54,7 +51,7 @@ export class PolygonPage {
   }
 
   loadMap() {
-    this.map = this.googleMaps.create('map_canvas', {
+    this.map = GoogleMaps.create('map_canvas', {
       camera: {
         target: this.GORYOKAKU_POINTS
       }

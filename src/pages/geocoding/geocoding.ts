@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -20,21 +20,14 @@ import {
 @IonicPage()
 @Component({
   selector: 'page-geocoding',
-  templateUrl: 'geocoding.html',
-  providers: [
-    Geocoder
-  ]
+  templateUrl: 'geocoding.html'
 })
 export class GeocodingPage {
   search_address: any;
   map1: GoogleMap;
   map2: GoogleMap;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private googleMaps: GoogleMaps,
-    private geocoder: Geocoder) {
+  constructor() {
   }
 
   ionViewDidLoad() {
@@ -45,7 +38,7 @@ export class GeocodingPage {
 
   loadMap1() {
     this.search_address = '1600 Amphitheatre Parkway, Mountain View, CA 94043, United States';
-    this.map1 = this.googleMaps.create(document.getElementById('map_canvas1'));
+    this.map1 = GoogleMaps.create(document.getElementById('map_canvas1'));
 
     // Wait the MAP_READY before using any methods.
     this.map1.one(GoogleMapsEvent.MAP_READY).then(() => {
@@ -57,7 +50,7 @@ export class GeocodingPage {
     this.map1.clear();
 
     // Address -> latitude,longitude
-    this.geocoder.geocode({
+    Geocoder.geocode({
       "address": this.search_address
     })
     .then((results: GeocoderResult[]) => {
@@ -80,7 +73,7 @@ export class GeocodingPage {
 
 
   loadMap2() {
-    this.map2 = this.googleMaps.create('map_canvas2', {
+    this.map2 = GoogleMaps.create('map_canvas2', {
       camera: {
         target: [
           {"lat": 21.306944, "lng": -157.858333},
@@ -99,8 +92,8 @@ export class GeocodingPage {
 
     let start = Date.now();
 
-        // Geocode multiple location
-    this.geocoder.geocode({
+    // Geocode multiple location
+    Geocoder.geocode({
 
       // US Capital cities
       "address": [

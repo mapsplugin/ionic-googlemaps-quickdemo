@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -24,10 +24,7 @@ export class MarkerClusterPage {
 
   map: GoogleMap;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private googleMaps: GoogleMaps) {
+  constructor() {
   }
 
   ionViewDidLoad() {
@@ -37,7 +34,7 @@ export class MarkerClusterPage {
 
   loadMap() {
 
-    this.map = this.googleMaps.create('map_canvas', {
+    this.map = GoogleMaps.create('map_canvas', {
       'camera': {
         'target': {
           "lat": 21.382314,

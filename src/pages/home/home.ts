@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  ToastController
-} from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -21,10 +18,7 @@ export class HomePage {
   mapReady: boolean = false;
   map: GoogleMap;
 
-  constructor(
-    public navCtrl: NavController,
-    public toastCtrl: ToastController,
-    private googleMaps: GoogleMaps) {
+  constructor(public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -34,7 +28,7 @@ export class HomePage {
   loadMap() {
     // Create a map after the view is loaded.
     // (platform is already ready in app.component.ts)
-    this.map = this.googleMaps.create('map_canvas', {
+    this.map = GoogleMaps.create('map_canvas', {
       camera: {
         target: {
           lat: 43.0741704,

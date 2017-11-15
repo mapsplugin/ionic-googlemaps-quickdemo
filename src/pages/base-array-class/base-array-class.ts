@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -21,22 +21,14 @@ import {
 @IonicPage()
 @Component({
   selector: 'page-base-array-class',
-  templateUrl: 'base-array-class.html',
-  providers: [
-    Spherical
-  ]
+  templateUrl: 'base-array-class.html'
 })
 export class BaseArrayClassPage {
 
   map: GoogleMap;
   distance: string;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private googleMaps: GoogleMaps,
-    private spherical: Spherical,
-    private _ngZone: NgZone) {
+  constructor(private _ngZone: NgZone) {
   }
 
   ionViewDidLoad() {
@@ -50,7 +42,7 @@ export class BaseArrayClassPage {
       {lat: 33.90190897196702, lng: -118.37905883789062},
       {lat: 33.89471353635718, lng: -118.3787155151367}
     ];
-    this.map = this.googleMaps.create('map_canvas', {
+    this.map = GoogleMaps.create('map_canvas', {
       camera: {
         target: points
       }
@@ -83,7 +75,7 @@ export class BaseArrayClassPage {
 
       baseArray.on('set_at').subscribe(() => {
         this._ngZone.run(() => {
-          let distanceMeter: number = this.spherical.computeLength(baseArray);
+          let distanceMeter: number = Spherical.computeLength(baseArray);
           this.distance = (distanceMeter * 0.000621371192).toFixed(2) + " miles";
         });
       });

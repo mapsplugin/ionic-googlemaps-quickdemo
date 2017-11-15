@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -20,20 +20,13 @@ import {
 @IonicPage()
 @Component({
   selector: 'page-circle',
-  templateUrl: 'circle.html',
-  providers: [
-    Spherical
-  ]
+  templateUrl: 'circle.html'
 })
 export class CirclePage {
 
   map: GoogleMap;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private spherical: Spherical,
-    private googleMaps: GoogleMaps) {
+  constructor() {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CirclePage');
@@ -47,10 +40,10 @@ export class CirclePage {
 
     // Calculate the positions
     let positions: ILatLng[] = [0, 90, 180, 270].map((degree: number) => {
-      return this.spherical.computeOffset(center, radius, degree);
+      return Spherical.computeOffset(center, radius, degree);
     });
 
-    this.map = this.googleMaps.create('map_canvas', {
+    this.map = GoogleMaps.create('map_canvas', {
       camera: {
         target: positions,
         padding: 100
@@ -73,7 +66,7 @@ export class CirclePage {
       }).then((circle: Circle) => {
         marker.on('position_changed').subscribe((params: any) => {
           let newValue: ILatLng = <ILatLng>params[1];
-          let newRadius: number = this.spherical.computeDistanceBetween(center, newValue);
+          let newRadius: number = Spherical.computeDistanceBetween(center, newValue);
           circle.setRadius(newRadius);
         });
       });
