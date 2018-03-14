@@ -22,7 +22,17 @@ import { GoogleMaps } from "@ionic-native/google-maps";
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    BaseArrayClassPage,
+    PolygonPage,
+    HtmlInfoWindowPage,
+    MarkerClusterPage,
+    GeocodingPage,
+    PolylinePage,
+    MarkerPage,
+    CirclePage,
+    GroundOverlayPage,
+    TileOverlayPage
   ],
   imports: [
     BrowserModule,
