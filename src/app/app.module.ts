@@ -14,6 +14,7 @@ import { MarkerPage } from '../pages/marker/marker';
 import { CirclePage } from '../pages/circle/circle';
 import { GroundOverlayPage } from '../pages/ground-overlay/ground-overlay';
 import { TileOverlayPage } from '../pages/tile-overlay/tile-overlay';
+import { KmlOverlayPage } from '../pages/kml-overlay/kml-overlay';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,7 +33,8 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     MarkerPage,
     CirclePage,
     GroundOverlayPage,
-    TileOverlayPage
+    TileOverlayPage,
+    KmlOverlayPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     MarkerPage,
     CirclePage,
     GroundOverlayPage,
-    TileOverlayPage
+    TileOverlayPage,
+    KmlOverlayPage
   ],
   providers: [
     StatusBar,

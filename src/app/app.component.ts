@@ -14,6 +14,7 @@ import { MarkerPage } from '../pages/marker/marker';
 import { CirclePage } from '../pages/circle/circle';
 import { GroundOverlayPage } from '../pages/ground-overlay/ground-overlay';
 import { TileOverlayPage } from '../pages/tile-overlay/tile-overlay';
+import { KmlOverlayPage } from '../pages/kml-overlay/kml-overlay';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,6 +40,7 @@ export class MyApp {
       { title: 'Polygon', component: PolygonPage },
       { title: 'GroundOverlay', component: GroundOverlayPage },
       { title: 'TileOverlay', component: TileOverlayPage },
+      { title: 'KmlOverlay', component: KmlOverlayPage },
       { title: 'Geocoding', component: GeocodingPage },
       { title: 'BaseArrayClass', component: BaseArrayClassPage }
     ];
