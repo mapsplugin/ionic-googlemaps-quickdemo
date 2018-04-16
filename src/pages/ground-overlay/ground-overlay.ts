@@ -43,19 +43,16 @@ export class GroundOverlayPage {
       }
     });
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      return this.map.addGroundOverlay({
-        'url': 'assets/imgs/newark_nj_1922.jpg',
-        'bounds': bounds,
-        'opacity': 0.5,
-        'clickable': true  // default = false
-      });
-    }).then((groundOverlay: GroundOverlay) => {
+    let groundOverlay: GroundOverlay = this.map.addGroundOverlaySync({
+      'url': 'assets/imgs/newark_nj_1922.jpg',
+      'bounds': bounds,
+      'opacity': 0.5,
+      'clickable': true  // default = false
+    });
 
-      // Catch the GROUND_OVERLAY_CLICK event
-      groundOverlay.on(GoogleMapsEvent.GROUND_OVERLAY_CLICK).subscribe(() => {
-        groundOverlay.setImage('assets/imgs/newark_nj_1922_2.jpg');
-      });
+    // Catch the GROUND_OVERLAY_CLICK event
+    groundOverlay.on(GoogleMapsEvent.GROUND_OVERLAY_CLICK).subscribe(() => {
+      groundOverlay.setImage('assets/imgs/newark_nj_1922_2.jpg');
     });
   }
 

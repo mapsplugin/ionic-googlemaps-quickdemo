@@ -49,26 +49,23 @@ export class PolylinePage {
       }
     });
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      this.map.addPolyline({
-        points: AIR_PORTS,
-        color: '#AA00FF',
-        width: 10,
-        geodesic: true,
-        clickable: true  // clickable = false in default
-      }).then((polyline: Polyline) => {
-        polyline.on(GoogleMapsEvent.POLYLINE_CLICK).subscribe((params: any) => {
-          let position: LatLng = <LatLng>params[0];
+    let polyline: Polyline = this.map.addPolylineSync({
+      points: AIR_PORTS,
+      color: '#AA00FF',
+      width: 10,
+      geodesic: true,
+      clickable: true  // clickable = false in default
+    });
 
-          this.map.addMarker({
-            position: position,
-            title: position.toUrlValue(),
-            disableAutoPan: true
-          }).then((marker: Marker) => {
-            marker.showInfoWindow();
-          });
-        });
+    polyline.on(GoogleMapsEvent.POLYLINE_CLICK).subscribe((params: any) => {
+      let position: LatLng = <LatLng>params[0];
+
+      let marker: Marker = this.map.addMarkerSync({
+        position: position,
+        title: position.toUrlValue(),
+        disableAutoPan: true
       });
+      marker.showInfoWindow();
     });
   }
 

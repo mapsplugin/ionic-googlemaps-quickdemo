@@ -34,12 +34,10 @@ export class TileOverlayPage {
 
     this.map = GoogleMaps.create('map_canvas');
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      this.map.addTileOverlay({
-        getTile: (x: number, y: number, zoom: number) => {
-          return "http://tile.stamen.com/watercolor/" + zoom + "/" + x + "/" + y + ".jpg";
-        }
-      });
+    this.map.addTileOverlaySync({
+      getTile: (x: number, y: number, zoom: number) => {
+        return "http://tile.stamen.com/watercolor/" + zoom + "/" + x + "/" + y + ".jpg";
+      }
     });
   }
 

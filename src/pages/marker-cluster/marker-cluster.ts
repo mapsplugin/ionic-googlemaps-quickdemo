@@ -44,13 +44,11 @@ export class MarkerClusterPage {
       }
     });
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      this.addCluster(this.dummyData());
-    });
+    this.addCluster(this.dummyData());
   }
 
   addCluster(data) {
-    this.map.addMarkerCluster({
+    let markerCluster: MarkerCluster = this.map.addMarkerClusterSync({
       markers: data,
       icons: [
         {
@@ -69,16 +67,15 @@ export class MarkerClusterPage {
           }
         }
       ]
-    }).then((markerCluster: MarkerCluster) => {
-
-      markerCluster.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
-        let marker: Marker = params[1];
-        marker.setTitle(marker.get("name"));
-        marker.setSnippet(marker.get("address"));
-        marker.showInfoWindow();
-      });
-
     });
+
+    markerCluster.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
+      let marker: Marker = params[1];
+      marker.setTitle(marker.get("name"));
+      marker.setSnippet(marker.get("address"));
+      marker.showInfoWindow();
+    });
+
   }
 
   dummyData() {
