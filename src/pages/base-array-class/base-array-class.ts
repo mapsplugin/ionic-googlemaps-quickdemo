@@ -3,7 +3,6 @@ import { IonicPage } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
-  GoogleMapsEvent,
   Marker,
   ILatLng,
   Polyline,
