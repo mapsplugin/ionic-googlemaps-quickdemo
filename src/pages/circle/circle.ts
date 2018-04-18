@@ -50,26 +50,23 @@ export class CirclePage {
       }
     });
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      return this.map.addMarker({
-        position: positions[0],
-        draggable: true,
-        title: 'Drag me!'
-      });
-    }).then((marker: Marker) => {
-      this.map.addCircle({
-        'center': center,
-        'radius': radius,
-        'strokeColor' : '#AA00FF',
-        'strokeWidth': 5,
-        'fillColor' : '#00880055'
-      }).then((circle: Circle) => {
-        marker.on('position_changed').subscribe((params: any) => {
-          let newValue: ILatLng = <ILatLng>params[1];
-          let newRadius: number = Spherical.computeDistanceBetween(center, newValue);
-          circle.setRadius(newRadius);
-        });
-      });
+    let marker: Marker = this.map.addMarkerSync({
+      position: positions[0],
+      draggable: true,
+      title: 'Drag me!'
+    });
+    let circle: Circle = this.map.addCircleSync({
+      'center': center,
+      'radius': radius,
+      'strokeColor' : '#AA00FF',
+      'strokeWidth': 5,
+      'fillColor' : '#00880055'
+    });
+
+    marker.on('position_changed').subscribe((params: any) => {
+      let newValue: ILatLng = <ILatLng>params[1];
+      let newRadius: number = Spherical.computeDistanceBetween(center, newValue);
+      circle.setRadius(newRadius);
     });
   }
 

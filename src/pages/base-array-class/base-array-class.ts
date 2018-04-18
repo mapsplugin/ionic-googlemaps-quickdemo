@@ -47,37 +47,33 @@ export class BaseArrayClassPage {
         target: points
       }
     });
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      return this.map.addPolyline({
-        points: points
-      });
-    })
-    .then((polyline: Polyline) => {
-      let baseArray: BaseArrayClass<ILatLng> = polyline.getPoints();
+    let polyline: Polyline = this.map.addPolylineSync({
+      points: points
+    });
+    let baseArray: BaseArrayClass<ILatLng> = polyline.getPoints();
 
-      baseArray.mapAsync((point: ILatLng, next: (newElement: any) => void) => {
-        this.map.addMarker({
-          position: point,
-          draggable: true
-        }).then(next);
-      }).then((markers: Marker[]) => {
+    baseArray.mapAsync((point: ILatLng, next: (newElement: any) => void) => {
+      this.map.addMarker({
+        position: point,
+        draggable: true
+      }).then(next);
+    }).then((markers: Marker[]) => {
 
-        let baseArray2: BaseArrayClass<Marker> = new BaseArrayClass<Marker>(markers);
-        baseArray2.forEach((marker: Marker, idx: number) => {
-          marker.on('position_changed').subscribe((params) => {
-            baseArray.setAt(idx, params[1]);
-          });
+      let baseArray2: BaseArrayClass<Marker> = new BaseArrayClass<Marker>(markers);
+      baseArray2.forEach((marker: Marker, idx: number) => {
+        marker.on('position_changed').subscribe((params) => {
+          baseArray.setAt(idx, params[1]);
         });
-
-        // trigger the position_changed event for the first calculation.
-        markers[0].trigger('position_changed', null, markers[0].getPosition());
       });
 
-      baseArray.on('set_at').subscribe(() => {
-        this._ngZone.run(() => {
-          let distanceMeter: number = Spherical.computeLength(baseArray);
-          this.distance = (distanceMeter * 0.000621371192).toFixed(2) + " miles";
-        });
+      // trigger the position_changed event for the first calculation.
+      markers[0].trigger('position_changed', null, markers[0].getPosition());
+    });
+
+    baseArray.on('set_at').subscribe(() => {
+      this._ngZone.run(() => {
+        let distanceMeter: number = Spherical.computeLength(baseArray);
+        this.distance = (distanceMeter * 0.000621371192).toFixed(2) + " miles";
       });
     });
 

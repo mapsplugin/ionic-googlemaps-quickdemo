@@ -57,33 +57,25 @@ export class PolygonPage {
       }
     });
 
-    this.map.one(GoogleMapsEvent.MAP_READY)
-      .then(() => {
-        return this.map.addPolygon({
-          'points': this.GORYOKAKU_POINTS,
-          'strokeColor' : '#AA00FF',
-          'fillColor' : '#00FFAA',
-          'strokeWidth': 10
-        });
-      })
-      .then((polygon: Polygon) => {
-        let points: BaseArrayClass<ILatLng> = polygon.getPoints();
+    let polygon: Polygon = this.map.addPolygonSync({
+      'points': this.GORYOKAKU_POINTS,
+      'strokeColor' : '#AA00FF',
+      'fillColor' : '#00FFAA',
+      'strokeWidth': 10
+    });
 
-        points.mapAsync((latLng: ILatLng, next: (marker: Marker) => void) => {
-          this.map.addMarker({
-            draggable: true,
-            position: latLng
-          }).then(next);
-        }).then((markers: Marker[]) => {
-          markers.forEach((marker: Marker, idx: number) => {
-            marker.on(GoogleMapsEvent.MARKER_DRAG).subscribe((params) => {
-              let position: LatLng = params[0];
-              points.setAt(idx, position);
-            });
-          });
-        });
+    let points: BaseArrayClass<ILatLng> = polygon.getPoints();
 
+    points.forEach((latLng: ILatLng, idx: number) => {
+      let marker: Marker = this.map.addMarkerSync({
+        draggable: true,
+        position: latLng
       });
+      marker.on(GoogleMapsEvent.MARKER_DRAG).subscribe((params) => {
+        let position: LatLng = params[0];
+        points.setAt(idx, position);
+      });
+    });
 
   }
 

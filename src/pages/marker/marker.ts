@@ -92,19 +92,11 @@ export class MarkerPage {
         target: bounds
       }
     });
-
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      POINTS
-        .mapAsync((data: any, next: (marker: Marker) => void) => {
-          data.disableAutoPan = true;
-          this.map.addMarker(data).then(next);
-        })
-        .then((markers: Marker[]) => {
-          markers.forEach((marker: Marker) => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(this.onMarkerClick);
-            marker.on(GoogleMapsEvent.INFO_CLICK).subscribe(this.onMarkerClick);
-          });
-        });
+    POINTS.forEach((data: any) => {
+      data.disableAutoPan = true;
+      let marker: Marker = this.map.addMarkerSync(data);
+      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(this.onMarkerClick);
+      marker.on(GoogleMapsEvent.INFO_CLICK).subscribe(this.onMarkerClick);
     });
 
   }
