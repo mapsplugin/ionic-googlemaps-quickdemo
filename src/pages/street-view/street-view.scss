@@ -1,3 +1,10 @@
 page-street-view {
 
+  #map_canvas {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+  }
 }
