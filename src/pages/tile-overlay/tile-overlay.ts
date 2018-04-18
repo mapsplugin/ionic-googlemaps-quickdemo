@@ -37,7 +37,7 @@ export class TileOverlayPage {
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       this.map.addTileOverlay({
         getTile: (x: number, y: number, zoom: number) => {
-          return "http://tile.stamen.com/watercolor/" + zoom + "/" + x + "/" + y + ".jpg";
+          return `http://tile.stamen.com/watercolor/${zoom}/${x}/${y}.jpg`;
         }
       });
     });

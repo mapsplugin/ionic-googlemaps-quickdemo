@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, LoadingController } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -24,8 +24,9 @@ import {
 export class KmlOverlayPage {
 
   map: GoogleMap;
+  loading: any;
 
-  constructor() {
+  constructor(public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -35,26 +36,30 @@ export class KmlOverlayPage {
 
   loadMap() {
 
-    this.map = GoogleMaps.create('map_canvas');
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      this.map.addKmlOverlay({
-        url: "assets/kmloverlay/polygon.kml"
-      }).then((kmlOverlay: KmlOverlay) => {
-
-        console.log(kmlOverlay);
-
-        this.map.moveCamera(kmlOverlay.getDefaultViewport());
-
-        // You can get additional information
-        kmlOverlay.on(GoogleMapsEvent.KML_CLICK).subscribe((params: any) => {
-          let overlay: Polygon = params[0]; // depends on overlay
-          let latLng: ILatLng = params[1];
-          console.log(overlay, latLng);
-        });
-
-      });
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
     });
-  }
+    this.loading.present();
 
+    this.map = GoogleMaps.create('map_canvas');
+    this.map.addKmlOverlay({
+      url: "assets/kmloverlay/polygon.kml"
+    }).then((kmlOverlay: KmlOverlay) => {
+      this.loading.dismiss();
+
+      console.log(kmlOverlay);
+
+      this.map.moveCamera(kmlOverlay.getDefaultViewport());
+
+      // You can get additional information
+      kmlOverlay.on(GoogleMapsEvent.KML_CLICK).subscribe((params: any) => {
+        let overlay: Polygon = params[0]; // depends on overlay
+        let latLng: ILatLng = params[1];
+        console.log(overlay, latLng);
+      });
+
+    });
+
+  }
 }
