@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, LoadingController } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -24,13 +24,18 @@ import {
 export class GeocodingPage {
   map1: GoogleMap;
   map2: GoogleMap;
+  loading: any;
   @ViewChild('search_address') search_address:ElementRef;
 
-  constructor() {
+  constructor(public loadingCtrl: LoadingController) {
   }
 
   ionViewDidEnter() {
     console.log('ionViewDidLoad GeocodingPage');
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
     this.loadMap1();
     this.loadMap2();
   }
@@ -41,6 +46,7 @@ export class GeocodingPage {
   }
 
   onButton1_click(event) {
+    this.loading.present();
     this.map1.clear();
 
     // Address -> latitude,longitude
@@ -49,6 +55,7 @@ export class GeocodingPage {
     })
     .then((results: GeocoderResult[]) => {
       console.log(results);
+      this.loading.dismiss();
 
       let marker: Marker = this.map1.addMarkerSync({
         'position': results[0].position,
@@ -77,6 +84,7 @@ export class GeocodingPage {
   onButton2_click(event) {
     this.map2.clear();
 
+    this.loading.present();
     let start = Date.now();
 
     // Geocode multiple location
@@ -117,6 +125,7 @@ export class GeocodingPage {
             'title':  JSON.stringify(result)
           });
         });
+        this.loading.dismiss();
         let end = Date.now();
         alert("duration: " + ((end - start) / 1000).toFixed(1) + " seconds");
       });
