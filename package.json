@@ -13,7 +13,7 @@
     "link": "bash bin/local_dev.sh"
   },
   "dependencies": {
-    "@angular/common": "4.4.4",
+    "@angular/common": "19.2.16",
     "@angular/compiler": "4.4.4",
     "@angular/compiler-cli": "4.4.4",
     "@angular/core": "4.4.4",
